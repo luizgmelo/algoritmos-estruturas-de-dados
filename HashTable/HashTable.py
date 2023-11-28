@@ -1,3 +1,5 @@
+import hashlib
+
 class HashTable:
     class PairKeyValue:
         def __init__(self, key, value):
@@ -15,7 +17,8 @@ class HashTable:
         self.growth_table = self.reduce_table = 2
 
     def hash(self, key):
-        return hash(key) % self.num_tables
+        encode = key.encode()
+        return int(hashlib.sha256(encode).hexdigest(), 16) % self.num_tables
 
     @property
     def capacity_percentage_used(self):
