@@ -36,6 +36,37 @@ class LinkedList:
         self.count = 0
 
     def __getitem__(self, position):
+        if isinstance(position, slice):
+            step = position.step if position.step is not None else 1
+            if step == 0:
+                raise ValueError('Step cannot be zero')
+            if step > 0:
+                start = position.start if position.start is not None else 0
+                stop = position.stop if position.stop is not None else len(self)
+            if step < 0:
+                start = position.start if position.start is not None else len(self) - 1
+                stop = position.stop if position.stop is not None else -1
+
+            if start < 0:
+                start = start + len(self)
+            if stop < 0 and position.stop is not None:
+                stop = stop + len(self)
+
+            part = LinkedList()
+            if step > 0:
+                i = 0
+                indexes = range(start, stop, step)
+                it = iter(self)
+                while i < stop:
+                    v = next(it)
+                    if i in indexes:
+                        part.insertAtEnd(v)
+                    i += 1
+            else:
+                for i in range(start, stop, step):
+                    part.insertAtEnd(self[i])
+            return part
+
         if position < 0:
             position = position + len(self)
         if position < 0 or position >= len(self):
@@ -87,6 +118,8 @@ print(linked_list[0])
 print(linked_list[1])
 print(linked_list[2])
 print(linked_list[3])
+print(linked_list[0:3])
+print(linked_list[-1:])
 linked_list.insertAtEnd(5)
 print("INDEX:", linked_list.index(5))
 print("SIZE:", len(linked_list))
