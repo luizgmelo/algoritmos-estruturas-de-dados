@@ -42,18 +42,20 @@ class HashTable:
         for pair in self.table[index]:
             if pair.key == key:
                 return pair.value
+        raise KeyError('Invalid key')
 
     def __delitem__(self, key):
         if self.capacity_percentage_used < self.low_percentage:
             new_capacity = self.num_tables // 2
             self.update(new_capacity)
-        
+
         index = self.hash(key)
         for pair in self.table[index]:
             if pair.key == key:
                 self.table[index].remove(pair)
                 self.length -= 1
                 return
+        raise KeyError('Invalid key')
 
     def update(self, new_capacity):
         old_table = self.table
