@@ -4,24 +4,24 @@ def quick_sort(arr, start=0, end=None):
     if end is None:
         end = len(arr) - 1
     if start < end:
-        p = partition(arr, start, end)
-        quick_sort(arr, start, p-1)
-        quick_sort(arr, p+1, end)
+        mid = (start+end)//2
+        pivot = arr[mid]
+        index = partition(arr, start, end, pivot)
+        quick_sort(arr, start, index-1)
+        quick_sort(arr, index, end)
     return arr
 
-
-def partition(arr, start, end):
-    pivot = arr[end]
-    i = start
-
-    for j in range(start, end):
-        if (arr[j] <= pivot):
-            arr[j], arr[i] = arr[i], arr[j]
-            i += 1
-
-    arr[i], arr[end] = arr[end], arr[i]
-
-    return i
+def partition(arr, left, right, pivot):
+    while left <= right:
+        while arr[left] < pivot:
+            left += 1
+        while arr[right] > pivot:
+            right -= 1
+        if left <= right:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
+    return left
 
 if __name__ == "__main__":
     order = list(range(10))
