@@ -7,6 +7,7 @@ def quick_sort(arr, start=0, end=None):
         p = partition(arr, start, end)
         quick_sort(arr, start, p-1)
         quick_sort(arr, p+1, end)
+    return arr
 
 
 def partition(arr, start, end):
