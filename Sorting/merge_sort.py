@@ -2,31 +2,35 @@ from random import shuffle
 
 def merge_sort(arr, start=0, end=None):
     if end is None:
-        end = len(arr)
-    if (end - start > 1):
+        end = len(arr) - 1
+    if (start < end):
         mid = (end + start) // 2
         merge_sort(arr, start, mid)
-        merge_sort(arr, mid, end)
+        merge_sort(arr, mid+1, end)
         merge(arr, start, mid, end)
     return arr
 
 def merge(arr, start, mid, end):
-    left = arr[start:mid]
-    right = arr[mid:end]
-    i, j = 0, 0
-    for k in range(start, end):
-        if i >= len(left):
-            arr[k] = right[j]
-            j += 1
-        elif j >= len(right):
-            arr[k] = left[i]
-            i += 1
-        elif left[i] < right[j]:
-            arr[k] = left[i]
+    helper = arr[:]
+    i, j, k = start, mid+1, start
+    while (i <= mid and j <= end):
+        if helper[i] <= helper[j]:
+            arr[k] = helper[i]
             i += 1
         else:
-            arr[k] = right[j]
+            arr[k] = helper[j]
             j += 1
+        k += 1
+    
+    while (i <= mid):
+        arr[k] = helper[i]
+        i += 1
+        k += 1
+
+    while (j <= end):
+        arr[k] = helper[j]
+        j += 1
+        k += 1
 
 if __name__ == "__main__":
     order = list(range(10))
