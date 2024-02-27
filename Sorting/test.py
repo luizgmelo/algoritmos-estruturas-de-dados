@@ -25,3 +25,10 @@ def test_sorting_order_numbers(algorithm):
     result = algorithm(order_numbers)
     assert result == order_numbers
 
+
+@pytest.mark.parametrize("algorithm", [(bubble_sort), (selection_sort),(insertion_sort),(shell_sort),(merge_sort),(quick_sort)])
+def test_sorting_repeated_numbers(algorithm):
+    repeated_numbers = [7, 7, 7, 1, 1, 1, 2, 2, 2, 3, 3, 3, 5, 5, 5, 6, 6, 6, 4, 4]
+    result = algorithm(repeated_numbers)
+    assert result == [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7]
+
