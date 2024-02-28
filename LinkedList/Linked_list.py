@@ -109,21 +109,22 @@ class LinkedList:
         self.tail.next = new_node
         self.tail = new_node
 
-linked_list = LinkedList()
-linked_list.insert(0, 1)
-linked_list.insert(1, 2)
-linked_list.insert(2, 3)
-linked_list.insert(1, 4)
-print(linked_list[0])
-print(linked_list[1])
-print(linked_list[2])
-print(linked_list[3])
-print(linked_list[0:3])
-print(linked_list[-1:])
-linked_list.insertAtEnd(5)
-print("INDEX:", linked_list.index(5))
-print("SIZE:", len(linked_list))
-print("STRING:", str(linked_list))
+if __name__ == "__main__":
+    linked_list = LinkedList()
+    linked_list.insert(0, 1)
+    linked_list.insert(1, 2)
+    linked_list.insert(2, 3)
+    linked_list.insert(1, 4)
+    print(linked_list[0])
+    print(linked_list[1])
+    print(linked_list[2])
+    print(linked_list[3])
+    print(linked_list[0:3])
+    print(linked_list[-1:])
+    linked_list.insertAtEnd(5)
+    print("INDEX:", linked_list.index(5))
+    print("SIZE:", len(linked_list))
+    print("STRING:", str(linked_list))
 
-for valor in linked_list:
-    print(valor)
+    for valor in linked_list:
+        print(valor)
