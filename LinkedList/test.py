@@ -72,6 +72,34 @@ class TestLinkedList(unittest.TestCase):
     with self.assertRaises(ValueError):
       my_list.index(-999)
 
+  def test_iter(self):
+      my_list = LinkedList()
+      my_list.insertAtEnd(0)
+      my_list.insertAtEnd(1)
+      my_list.insertAtEnd(2)
+      my_list.insertAtEnd(3)
+      my_list.insertAtEnd(4)
+      aux = [0, 1, 2, 3, 4]
+      for i in my_list:
+          self.assertEqual(my_list[i], aux[i])
+
+  def test_str(self):
+      my_list = LinkedList()
+      self.assertEqual(str(my_list), '[]')
+      my_list.insertAtEnd(0)
+      self.assertEqual(str(my_list), '[0]')
+      my_list.insertAtEnd(1)
+      self.assertEqual(str(my_list), '[0, 1]')
+      my_list.insertAtEnd(2)
+      self.assertEqual(str(my_list), '[0, 1, 2]')
+      my_list.insertAtEnd(3)
+      self.assertEqual(str(my_list), '[0, 1, 2, 3]')
+      my_list.insertAtEnd(4)
+      self.assertEqual(str(my_list), '[0, 1, 2, 3, 4]')
+
+      
+
+
 if __name__ == "__main__":
 
   unittest.main()
