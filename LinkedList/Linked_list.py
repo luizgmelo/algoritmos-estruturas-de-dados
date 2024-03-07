@@ -12,6 +12,10 @@ class LinkedList:
         return self.count
 
     def __str__(self):
+        if self.head is not None:
+            if self.head.data == 0 and len(self) == 1:
+                return '[0]'
+
         return '[' + ", ".join([str(valor) for valor in self]) + ']'
 
     def __iter__(self):
@@ -111,20 +115,5 @@ class LinkedList:
 
 if __name__ == "__main__":
     linked_list = LinkedList()
-    linked_list.insert(0, 1)
-    linked_list.insert(1, 2)
-    linked_list.insert(2, 3)
-    linked_list.insert(1, 4)
-    print(linked_list[0])
-    print(linked_list[1])
-    print(linked_list[2])
-    print(linked_list[3])
-    print(linked_list[0:3])
-    print(linked_list[-1:])
-    linked_list.insertAtEnd(5)
-    print("INDEX:", linked_list.index(5))
-    print("SIZE:", len(linked_list))
+    linked_list.insertAtEnd(0)
     print("STRING:", str(linked_list))
-
-    for valor in linked_list:
-        print(valor)
