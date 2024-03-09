@@ -37,14 +37,14 @@ class AVL:
     def __insert_node(self, data, root):
         if data < root.data:
             if root.left is None:
-                self.root.left = Node(data)
-                self.root.left.parent = root
+                root.left = Node(data)
+                root.left.parent = root
             else:
                 self.__insert_node(data, root.left)
         elif data >= root.data:
             if root.right is None:
-                self.root.right = Node(data)
-                self.root.right.parent = root
+                root.right = Node(data)
+                root.right.parent = root
             else:
                 self.__insert_node(data, root.right)
 
