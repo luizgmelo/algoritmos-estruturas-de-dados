@@ -53,7 +53,8 @@ class AVL:
     
     # right-left case
     def double_right_rotate(self, z):
-        pass
+        z.right = self.right_rotate(z.right)
+        return self.left_rotate(z)
 
     def insert(self, data):
         if self.root is None:
