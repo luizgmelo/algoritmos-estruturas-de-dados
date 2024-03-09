@@ -19,13 +19,26 @@ class AVL:
         if data < root.data:
             if root.left is None:
                 self.root.left = Node(data)
-                return
-            self.__insert_node(data, root.left)
+            else:
+                self.__insert_node(data, root.left)
         elif data >= root.data:
             if root.right is None:
                 self.root.right = Node(data)
-                return
-            self.__insert_node(data, root.right)
+            else:
+                self.__insert_node(data, root.right)
+
+        root.height = self.get_height(root)
+
+    
+    def get_height(self, node):
+        if node is None:
+            return 0
+        else:
+            left_height = self.get_height(node.left)
+            right_height = self.get_height(node.right)
+
+            return max(left_height, right_height) + 1
+    
 
     def print_inoder(self, root):
         if root is not None:
@@ -56,3 +69,4 @@ if __name__ == "__main__":
     print("PREORDER")
     avl.print_postorder(avl.root)
     print("POST")
+    print("Height of tree is", avl.root.left.height)
