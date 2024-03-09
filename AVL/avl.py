@@ -1,8 +1,9 @@
 class Node:
-    def __init__(self, data, left=None, right=None):
+    def __init__(self, data, left=None, right=None, parent=None):
         self.data = data
         self.left = left
         self.right = right
+        self.parent = parent
         self.height = 1
 
 class AVL:
@@ -11,15 +12,19 @@ class AVL:
     
     # ref rotations: https://www.geeksforgeeks.org/insertion-in-an-avl-tree/
 
+    # right-right case
     def left_rotate(self, z):
         pass
-
+        
+    # right-left case
     def double_left_rotate(self, z):
         pass
     
+    # left-left case
     def right_rotate(self, z):
         pass
-
+    
+    # left-right case
     def double_right_rotate(self, z):
         pass
 
@@ -33,11 +38,13 @@ class AVL:
         if data < root.data:
             if root.left is None:
                 self.root.left = Node(data)
+                self.root.left.parent = root
             else:
                 self.__insert_node(data, root.left)
         elif data >= root.data:
             if root.right is None:
                 self.root.right = Node(data)
+                self.root.right.parent = root
             else:
                 self.__insert_node(data, root.right)
 
@@ -84,3 +91,7 @@ if __name__ == "__main__":
     avl.print_postorder(avl.root)
     print("POST")
     print("Height of tree is", avl.root.left.height)
+    print("Parents")
+    print("root", avl.root.parent)
+    print("root->left", avl.root.left.parent.data)
+    print("root->right", avl.root.right.parent.data)
