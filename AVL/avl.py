@@ -34,7 +34,19 @@ class AVL:
     
     # left-left case
     def right_rotate(self, z):
-        pass
+        y = z.left
+        t3 = y.right
+
+        y.right = z
+        y.parent = z.parent
+
+        z.left = t3
+        z.parent = y
+
+        z.height = max(self.get_height(z.left), self.get_height(z.right)) + 1
+        y.height = max(self.get_height(y.left), self.get_height(y.right)) + 1
+
+        return y
     
     # left-right case
     def double_right_rotate(self, z):
