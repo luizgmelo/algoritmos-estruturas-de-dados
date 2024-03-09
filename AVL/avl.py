@@ -8,6 +8,20 @@ class Node:
 class AVL:
     def __init__(self):
         self.root = None
+    
+    # ref rotations: https://www.geeksforgeeks.org/insertion-in-an-avl-tree/
+
+    def left_rotate(self, z):
+        pass
+
+    def double_left_rotate(self, z):
+        pass
+    
+    def right_rotate(self, z):
+        pass
+
+    def double_right_rotate(self, z):
+        pass
 
     def insert(self, data):
         if self.root is None:
