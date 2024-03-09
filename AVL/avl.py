@@ -30,7 +30,9 @@ class AVL:
 
     # left-right case
     def double_left_rotate(self, z):
-        pass
+        z.left = self.left_rotate(z.left)
+        return self.right_rotate(z)
+
         
     
     # left-left case
