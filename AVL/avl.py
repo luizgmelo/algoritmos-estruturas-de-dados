@@ -70,28 +70,48 @@ class AVL:
     def print_preorder(self, root):
         if root is not None:
             print(root.data, end=" ")
-            self.print_inoder(root.left)
-            self.print_inoder(root.right)
+            self.print_preorder(root.left)
+            self.print_preorder(root.right)
 
     def print_postorder(self, root):
         if root is not None:
-            self.print_inoder(root.left)
-            self.print_inoder(root.right)
+            self.print_postorder(root.left)
+            self.print_postorder(root.right)
             print(root.data, end=" ")
 
 if __name__ == "__main__":
     avl = AVL()
-    avl.insert(2)
     avl.insert(1)
+    avl.insert(2)
     avl.insert(3)
+    avl.insert(4)
+    avl.insert(5)
+    """
+      2               
+     1 \
+        4       
+        / \
+        3  5
+         2 1 4 3 5
+    """
+
     avl.print_inoder(avl.root)
-    print("INORDER")
+    print("\nAFTER:")
+    # avl.print_inoder(avl.root)
+    # print("INORDER")
+    # avl.print_preorder(avl.root)
+    # print("PREORDER")
+    # avl.print_postorder(avl.root)
+    # print("POST")
+    # print("Height of tree is", avl.root.left.height)
+    # print("Right-Right Case")
+    avl.root = avl.left_rotate(avl.root)
+    print(avl.root.right.data)
+    print("\nAFTER AFTER:")
+    avl.root.right = avl.left_rotate(avl.root.right)
     avl.print_preorder(avl.root)
-    print("PREORDER")
-    avl.print_postorder(avl.root)
-    print("POST")
-    print("Height of tree is", avl.root.left.height)
-    print("Parents")
-    print("root", avl.root.parent)
-    print("root->left", avl.root.left.parent.data)
-    print("root->right", avl.root.right.parent.data)
+
+    # print("Parents")
+    # print("root", avl.root.parent)
+    # print("root->left", avl.root.left.parent.data)
+    # print("root->right", avl.root.right.parent.data)
