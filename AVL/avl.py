@@ -106,7 +106,7 @@ class AVL:
             """
             return self.double_right_rotate(root)
 
-        if balance_factor < 1 and data > root.right.data:
+        if balance_factor < -1 and data > root.right.data:
             """
               1                2 
                \\     Left    / \\
@@ -116,7 +116,7 @@ class AVL:
             """
             return self.left_rotate(root)
 
-        if balance_factor < 1 and data < root.right.data:
+        if balance_factor < -1 and data < root.right.data:
             """
              1             1                2
               \\    Right   \\    Left     / \\
