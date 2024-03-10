@@ -19,6 +19,9 @@ class AVL:
 
         y.left = z
         y.parent = z.parent
+        
+        if self.root == z:
+            self.root = y
 
         z.right = t2
         z.parent = y
@@ -41,6 +44,9 @@ class AVL:
 
         y.right = z
         y.parent = z.parent
+
+        if self.root == z:
+            self.root = y
 
         z.left = t3
         z.parent = y
