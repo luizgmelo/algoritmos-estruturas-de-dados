@@ -30,9 +30,8 @@ class AVL:
 
     # left-right case
     def double_left_rotate(self, z):
-        z.left = self.left_rotate(z.left)
-        return self.right_rotate(z)
-
+        z.right = self.right_rotate(z.right)
+        return self.left_rotate(z)
         
     
     # left-left case
@@ -53,8 +52,9 @@ class AVL:
     
     # right-left case
     def double_right_rotate(self, z):
-        z.right = self.right_rotate(z.right)
-        return self.left_rotate(z)
+        z.left = self.left_rotate(z.left)
+        return self.right_rotate(z)
+
 
     def insert(self, data):
         if self.root is None:
@@ -77,6 +77,14 @@ class AVL:
                 self.__insert_node(data, root.right)
 
         root.height = self.get_height(root)
+
+        balance_factor = self.get_height(root.left) - self.get_height(root.right)
+
+        if balance_factor > 1 and data < root.left.data:
+            pass
+
+        if balance_factor < 1:
+            pass
 
     
     def get_height(self, node):
