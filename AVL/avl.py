@@ -4,7 +4,7 @@ class Node:
         self.left = left
         self.right = right
         self.parent = parent
-        self.height = 1
+        self.height = 0
 
 class AVL:
     def __init__(self):
@@ -128,7 +128,7 @@ class AVL:
 
     
     def get_height(self, node):
-        if node is None:
+        if (node is None) or (node.left is None and node.right is None):
             return 0
         else:
             left_height = self.get_height(node.left)
