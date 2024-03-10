@@ -87,10 +87,44 @@ class AVL:
         balance_factor = self.get_height(root.left) - self.get_height(root.right)
 
         if balance_factor > 1 and data < root.left.data:
-            pass
+            """
+                3            2
+               /            / \\
+              2      =>    1   3
+             /
+            1
+            """
+            return self.right_rotate(root)
 
-        if balance_factor < 1:
-            pass
+        if balance_factor > 1 and data > root.left.data:
+            """
+               3            3          2
+              /    Left    /   Right  / \\
+             1      =>    2     =>   1   3
+              \\         /
+               2        1
+            """
+            return self.double_right_rotate(root)
+
+        if balance_factor < 1 and data > root.right.data:
+            """
+              1                2 
+               \\     Left    / \\
+                2      =>    1   3
+                 \\
+                  3
+            """
+            return self.left_rotate(root)
+
+        if balance_factor < 1 and data < root.right.data:
+            """
+             1             1                2
+              \\    Right   \\    Left     / \\
+               3      =>     2     =>     1   3
+              //              \\
+              2                3
+            """
+            return self.double_left_rotate(root)
 
     
     def get_height(self, node):
