@@ -155,5 +155,85 @@ class AVL:
             self.print_postorder(root.right)
             print(root.data, end=" ")
 
+    def search(self, root, data):
+        if root is None:
+            return False
+        elif root.data == data:
+            return True
+        elif root.data > data:
+            return self.search(root.left, data)
+        elif root.data < data:
+            return self.search(root.right, data)
+
+    def min(self):
+        if self.root is None:
+            return None
+        return self.__min_node(self.root)
+
+    def __min_node(self, root):
+        if root.left is None:
+            return root
+
+        return self.__min_node(root.left)
+
+    def sucessor(self, root):
+        if root is None:
+            return None
+        elif root.right is not None:
+            return self.__min_node(root.right)
+        else:
+            dad = root.parent
+            while (dad is not None and dad.data < root.data):
+                dad = dad.parent
+            return dad
+
+    def delete(self, data):
+        if self.root is None:
+            return None
+        self.__delete_node(self.root, data)
+
+    def __delete_node(self, root, data):
+        if root is None:
+            return False
+
+        # find the root will be remove 
+        if root.data > data:
+            self.__delete_node(root.left, data)
+            return root
+        elif root.data < data:
+            self.__delete_node(root.right, data)
+            return root
+
+        # found root to be deleted
+
+        # leaf case
+        if root.left is None and root.right is None:
+            if root == self.root:
+                self.root = None
+                return root
+            else:
+                if root.parent.data > root.data:
+                    # is leftchild
+                    root.parent.left = None
+                else:
+                    #is rightchild
+                    root.parent.right = None
+
+        # one child case
+        elif root.left is None:
+            # rightchild
+            root.right.data, root.data = root.data, root.right.data
+            root.right = None
+        elif root.right is None:
+            # leftchild
+            root.left.data, root.data = root.data, root.left.data
+            root.left = None
+        else:
+            # two child case
+            sucessor = self.sucessor(root)
+            root.data = sucessor.data
+            self.__delete_node(sucessor, data)
+       
+
 if __name__ == "__main__":
     avl = AVL()

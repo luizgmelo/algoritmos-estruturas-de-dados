@@ -104,3 +104,96 @@ class TestAVLMethods(unittest.TestCase):
         self.assertEqual(avl.root.right.left.parent.data, 81)
         self.assertEqual(avl.root.right.right.parent.data, 81)
 
+    def test_search(self):
+        avl = AVL()
+        avl.insert(22)
+        avl.insert(13)
+        avl.insert(42)
+        avl.insert(59)
+        avl.insert(23)
+        self.assertEqual(avl.search(avl.root, 22), True)
+        self.assertEqual(avl.search(avl.root, 23), True)
+        self.assertEqual(avl.search(avl.root, 42), True)
+        self.assertEqual(avl.search(avl.root, 2), False)
+        self.assertEqual(avl.search(avl.root, 88), False)
+        self.assertEqual(avl.search(avl.root, 999), False)
+
+    def test_min_node(self):
+        avl = AVL()
+        avl.insert(22)
+        avl.insert(13)
+        avl.insert(42)
+        avl.insert(59)
+        avl.insert(23)
+        self.assertEqual(avl.min().data, 13)
+
+    def test_sucessor(self):
+        avl = AVL()
+        avl.insert(22)
+        avl.insert(13)
+        avl.insert(42)
+        avl.insert(23)
+        # suc 22
+        self.assertEqual(avl.sucessor(avl.root).data, 23)
+        # suc 42
+        self.assertEqual(avl.sucessor(avl.root.right), None)
+        # suc 13
+        self.assertEqual(avl.sucessor(avl.root.left).data, 22)
+        # suc 23
+        self.assertEqual(avl.sucessor(avl.root.right.left).data, 42)
+
+    def test_delete(self):
+        # delete a leaf is a root
+        avl = AVL()
+        avl.root = Node(5)
+        avl.delete(5)
+        self.assertEqual(avl.root, None)
+
+        # delete a leaf is left child
+        avl = AVL()
+        avl.root = Node(5)
+        avl.root.left = Node(2)
+        avl.root.left.parent = avl.root
+        avl.delete(2)
+        self.assertEqual(avl.root.left, None)
+
+        # delete a leaf is right child
+        avl = AVL()
+        avl.root = Node(5)
+        avl.root.right = Node(10)
+        avl.root.right.parent = avl.root
+        avl.delete(10)
+        self.assertEqual(avl.root.right, None)
+        
+        # delete with only a single left child
+        avl = AVL()
+        avl.insert(25)
+        avl.insert(30)
+        avl.insert(10)
+        avl.insert(5)
+        avl.delete(10)
+        self.assertEqual(avl.root.left.data, 5)
+
+        # delete with only a single right child
+        avl = AVL()
+        avl.insert(25)
+        avl.insert(10)
+        avl.insert(30)
+        avl.insert(35)
+        avl.delete(30)
+        self.assertEqual(avl.root.right.data, 35)
+        
+
+        # delete with two children
+        avl = AVL()
+        avl.insert(25)
+        avl.insert(10)
+        avl.insert(30)
+        avl.insert(8)
+        avl.insert(15)
+        avl.delete(10)
+        self.assertEqual(avl.root.left.data, avl.sucessor(avl.root.left).data)
+
+
+
+    
