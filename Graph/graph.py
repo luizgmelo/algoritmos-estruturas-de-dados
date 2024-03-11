@@ -4,7 +4,8 @@ class Graph:
         self.graph = {}
     
     def insert_node(self, node):
-        pass
+        if node not in self.graph:
+            self.graph[node] = {}
 
     def delete_node(self):
         pass
