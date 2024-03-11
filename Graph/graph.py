@@ -41,6 +41,24 @@ class Graph:
 
         self.dfs(v, visited)
 
+    def has_path(self, from_node, to_node):
+        visited = set()
+
+        return self.dfs_check(from_node, to_node, visited)
+
+    def dfs_check(self, start, end, visited):
+        if start == end:
+            return True
+        visited.add(start)
+
+        for neighbour in self.graph[start]:
+            if neighbour not in visited:
+                if self.dfs_check(neighbour, end, visited):
+                    return True
+        return False
+
+
+
 
 if __name__ == "__main__":
     graph = Graph()
@@ -49,3 +67,4 @@ if __name__ == "__main__":
     graph.add_edge("A", "B")
     graph.add_edge("B", "C")
     graph.traverse("A")
+    print(graph.has_path("B", "C"))
