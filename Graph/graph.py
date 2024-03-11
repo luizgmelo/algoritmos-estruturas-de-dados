@@ -13,8 +13,14 @@ class Graph:
 
         self.graph[from_node].add(str(to_node))
 
-    def delete_node(self):
-        pass
+    def delete_edge(self, from_node, to_node):
+        self.graph[from_node].discard(to_node)
+
+    def delete_node(self, node_to_delete):
+        del self.graph[node_to_delete]
+
+        for node in self.graph:
+            self.delete_edge(node, node_to_delete)
 
     def search_node(self):
         pass
