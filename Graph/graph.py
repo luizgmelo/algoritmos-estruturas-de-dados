@@ -19,8 +19,25 @@ class Graph:
     def search_node(self):
         pass
 
-    def traverse(self):
-        pass
+    # depth first search
+    def dfs(self, v, visited):
+        visited.add(v)
+        print(v, end=' ')
+
+        for neighbour in self.graph[v]:
+            if neighbour not in visited:
+                self.dfs(neighbour, visited)
+
+    def traverse(self, v):
+        visited = set()
+
+        self.dfs(v, visited)
+
 
 if __name__ == "__main__":
     graph = Graph()
+    graph.add_node("A")
+    graph.add_node("B")
+    graph.add_edge("A", "B")
+    graph.add_edge("B", "C")
+    graph.traverse("A")
