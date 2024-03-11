@@ -3,7 +3,7 @@ class Graph:
     def __init__(self):
         self.graph = {}
     
-    def insert_node(self, node):
+    def add_node(self, node):
         if node not in self.graph:
             self.graph[node] = {}
 
