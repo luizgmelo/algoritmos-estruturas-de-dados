@@ -22,8 +22,10 @@ class Graph:
         for node in self.graph:
             self.delete_edge(node, node_to_delete)
 
-    def search_node(self):
-        pass
+    def search_node(self, node):
+        if node in self.graph.keys():
+            return True
+        return False
 
     # depth first search
     def dfs(self, v, visited):
