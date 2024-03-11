@@ -5,7 +5,7 @@ class Graph:
     
     def add_node(self, node):
         if node not in self.graph:
-            self.graph[node] = {}
+            self.graph[node] = set()
 
     def add_edge(self, from_node, to_node):
         self.add_node(from_node)
