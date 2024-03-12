@@ -113,7 +113,28 @@ class LinkedList:
         self.tail.next = new_node
         self.tail = new_node
 
+    def remove(self, value):
+        if self.head is not None:
+            if self.head.data == value:
+                self.head = self.head.next
+                return
+
+            current = self.head
+            while current.next is not None:
+                previous = current
+                current = current.next
+
+                if current.data == value:
+                    previous.next = current.next
+                    return
+
+        raise ValueError("There is no value in Linked List")
+
+
 if __name__ == "__main__":
     linked_list = LinkedList()
     linked_list.append(0)
+    linked_list.append(1)
+    linked_list.append(2)
+    linked_list.remove(2)
     print("STRING:", str(linked_list))

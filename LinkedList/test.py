@@ -3,8 +3,6 @@ import unittest
 from Linked_list import LinkedList
 
 class TestLinkedList(unittest.TestCase):
-
-
   def test_list_insert(self):
     my_list = LinkedList()
     my_list.insert(0, 1)
@@ -96,10 +94,27 @@ class TestLinkedList(unittest.TestCase):
       self.assertEqual(str(my_list), '[0, 1, 2, 3]')
       my_list.append(4)
       self.assertEqual(str(my_list), '[0, 1, 2, 3, 4]')
+  
+  def test_remove(self):
+      my_list = LinkedList()
+      with self.assertRaises(ValueError):
+          my_list.remove(10)
+          my_list.remove(13)
+          my_list.remove(999)
 
-      
+      my_list.append(12)
+      my_list.append(43)
+      my_list.append(33)
+      my_list.append(10)
+
+      # remove head
+      my_list.remove(12)
+      self.assertEqual(my_list.head.data , 43)
+
+      # remove another node
+      my_list.remove(33)
+      self.assertEqual(my_list.head.next.data, 10)
 
 
 if __name__ == "__main__":
-
   unittest.main()
