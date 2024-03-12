@@ -1,5 +1,10 @@
 import hashlib
 
+# importing LinkedList
+import sys
+sys.path.append("../LinkedList/")
+from Linked_list import LinkedList
+
 class HashTable:
     class PairKeyValue:
         def __init__(self, key, value):
@@ -8,7 +13,7 @@ class HashTable:
 
     def __init__(self):
         self.num_tables = 5
-        self.table = [[] for _ in range(self.num_tables)]
+        self.table = [LinkedList() for _ in range(self.num_tables)]
         self.length = 0
 
         self.low_percentage = 0.25
@@ -34,6 +39,7 @@ class HashTable:
             if pair.key == key:
                 pair.value = value
                 return
+
         self.table[index].append(self.PairKeyValue(key, value))
         self.length += 1
     
@@ -61,10 +67,26 @@ class HashTable:
         old_table = self.table
         self.length = 0
         self.num_tables = new_capacity
-        self.table = [[] for _ in range(new_capacity)]
+        self.table = [LinkedList() for _ in range(new_capacity)]
         for array in old_table:
             for pair in array:
                 self.__setitem__(pair.key, pair.value)
 
+if __name__ == "__main__":
+    table = HashTable()
+    table["0000-0000"] = "Guilherme"
+    table["0000-0001"] = "Rafael"
+    table["0000-0002"] = "Richard"
+    table["0000-0003"] = "Leandro"
+    table["0000-0004"] = "Wagner"
+    table["0000-0005"] = "Abreu"
+    del table["0000-0000"]
+    del table["0000-0001"]
+    del table["0000-0002"]
 
-table = HashTable()
+    # print(table["0000-0000"])
+    # print(table["0000-0001"])
+    # print(table["0000-0002"])
+    print(table["0000-0003"])
+    print(table["0000-0004"])
+    print(table["0000-0005"])
