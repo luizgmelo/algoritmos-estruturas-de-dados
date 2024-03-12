@@ -104,7 +104,7 @@ class LinkedList:
         new_node.next = current.next
         current.next = new_node 
 
-    def insertAtEnd(self, data):
+    def append(self, data):
         self.count += 1
         new_node = self.Node(data)
         if self.head is None:
@@ -115,5 +115,5 @@ class LinkedList:
 
 if __name__ == "__main__":
     linked_list = LinkedList()
-    linked_list.insertAtEnd(0)
+    linked_list.append(0)
     print("STRING:", str(linked_list))

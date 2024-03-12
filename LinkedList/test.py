@@ -37,12 +37,12 @@ class TestLinkedList(unittest.TestCase):
 
   def test_insert_at_end(self):
     my_list = LinkedList()
-    my_list.insertAtEnd(1)
+    my_list.append(1)
     self.assertEqual(my_list[-1], 1)
-    my_list.insertAtEnd(3)
-    my_list.insertAtEnd(9)
+    my_list.append(3)
+    my_list.append(9)
     self.assertEqual(my_list[-1], 9)
-    my_list.insertAtEnd(4)
+    my_list.append(4)
     self.assertEqual(my_list[-1], 4)
     self.assertEqual(len(my_list), 4)
 
@@ -74,11 +74,11 @@ class TestLinkedList(unittest.TestCase):
 
   def test_iter(self):
       my_list = LinkedList()
-      my_list.insertAtEnd(0)
-      my_list.insertAtEnd(1)
-      my_list.insertAtEnd(2)
-      my_list.insertAtEnd(3)
-      my_list.insertAtEnd(4)
+      my_list.append(0)
+      my_list.append(1)
+      my_list.append(2)
+      my_list.append(3)
+      my_list.append(4)
       aux = [0, 1, 2, 3, 4]
       for i in my_list:
           self.assertEqual(my_list[i], aux[i])
@@ -86,15 +86,15 @@ class TestLinkedList(unittest.TestCase):
   def test_str(self):
       my_list = LinkedList()
       self.assertEqual(str(my_list), '[]')
-      my_list.insertAtEnd(0)
+      my_list.append(0)
       self.assertEqual(str(my_list), '[0]')
-      my_list.insertAtEnd(1)
+      my_list.append(1)
       self.assertEqual(str(my_list), '[0, 1]')
-      my_list.insertAtEnd(2)
+      my_list.append(2)
       self.assertEqual(str(my_list), '[0, 1, 2]')
-      my_list.insertAtEnd(3)
+      my_list.append(3)
       self.assertEqual(str(my_list), '[0, 1, 2, 3]')
-      my_list.insertAtEnd(4)
+      my_list.append(4)
       self.assertEqual(str(my_list), '[0, 1, 2, 3, 4]')
 
       
