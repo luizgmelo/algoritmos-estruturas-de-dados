@@ -118,6 +118,7 @@ class LinkedList:
         if self.head is not None:
             if self.head.data == value:
                 self.head = self.head.next
+                self.count -= 1
                 return
 
             current = self.head
@@ -127,6 +128,7 @@ class LinkedList:
 
                 if current.data == value:
                     previous.next = current.next
+                    self.count -= 1
                     return
 
         raise ValueError("There is no value in Linked List")
