@@ -110,6 +110,7 @@ class LinkedList:
         if self.head is None:
             self.head = new_node
             self.tail = self.head
+            return
         self.tail.next = new_node
         self.tail = new_node
 
