@@ -84,6 +84,60 @@ class BST:
 
         return dad_succ.value
 
+    def delete(self, value):
+        if self.root is None:
+            return 
+        return self.__delete_node(value, self.root)
+
+    def __delete_node(self, value, root):
+        if root.value > value:
+            if root.left is None:
+                return
+            return self.__delete_node(value, root.left)
+
+        if root.value < value:
+            if root.right is None:
+                return
+            return self.__delete_node(value, root.right)
+
+        # found root
+
+        # case 1: is a leaf
+        if root.left is None and root.right is None:
+            # leaf is root
+            if root is self.root:
+                self.root = None
+                self.length -= 1
+                return
+            
+            dad = root.parent
+
+            if dad.left == root:
+                dad.left = None
+                self.length -= 1
+                return
+            elif dad.right == root:
+                dad.right = None
+                self.length -= 1
+                return
+
+        # case 2: is a node with one child
+        if root.left is not None:
+            # has leftchild
+            root.left.value, root.value = root.value, root.left.value
+            root.left = None
+            return
+        elif root.right is not None:
+            # has rightchild
+            root.right.value, root.value = root.value, root.right.value
+            root.right = None
+            return
+
+        # case 3: is a node with two child
+        # change node with sucessor and remove sucessor until it turns a case 1 or case 2
+        succ = self.successor(root)
+        root.value = succ.value
+        self.__delete_node(succ.value, succ)
 
     def print_inorder(self, root):
         if root is not None:
@@ -106,11 +160,3 @@ class BST:
 
 if __name__ == "__main__":
     tree = BST()
-    tree.insert(2)
-    tree.insert(3)
-    tree.insert(1)
-    print(tree.size())
-    print(tree.search(3))
-    print(tree.search(1))
-    print(tree.search(2))
-    print(tree.search(99))
