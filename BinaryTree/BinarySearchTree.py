@@ -122,15 +122,17 @@ class BST:
                 return
 
         # case 2: is a node with one child
-        if root.left is not None:
+        if root.left is not None and root.right is None:
             # has leftchild
             root.left.value, root.value = root.value, root.left.value
             root.left = None
+            self.length -= 1
             return
-        elif root.right is not None:
+        elif root.right is not None and root.left is None:
             # has rightchild
             root.right.value, root.value = root.value, root.right.value
             root.right = None
+            self.length -= 1
             return
 
         # case 3: is a node with two child
