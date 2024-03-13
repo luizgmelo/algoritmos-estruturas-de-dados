@@ -15,8 +15,6 @@ class Stack:
         return self.count
 
     def peek(self):
-        # if self.size() == 1:
-        #     return self.head.data
         current = self.head
         while current.next is not None:
             current = current.next
@@ -34,15 +32,21 @@ class Stack:
         current.next = new_node
 
     def pop(self):
-        if self.size() == 1:
-            self.head = None
+        if self.head is not None:
+            if self.size() == 1:
+                deleted = self.head.data
+                self.head = None
+                self.count -= 1
+                return deleted
+            current = self.head
+            while current.next.next is not None:
+                current = current.next
+            deleted = current.next.data
+            current.next = None
             self.count -= 1
-            return
-        self.count -= 1
-        current = self.head
-        while current.next.next is not None:
-            current = current.next
-        current.next = None
+            return deleted
+        raise IndexError("IndexError: pop from empty Stack")
 
-stack = Stack()
+if __name__ == "__main__":
+    stack = Stack()
 
