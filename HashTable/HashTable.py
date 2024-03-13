@@ -27,7 +27,7 @@ class HashTable:
 
     @property
     def capacity_percentage_used(self):
-        return self.length // self.num_tables
+        return self.length / self.num_tables
 
     def __setitem__(self, key, value):
         if self.capacity_percentage_used > self.max_percentage:
@@ -74,19 +74,4 @@ class HashTable:
 
 if __name__ == "__main__":
     table = HashTable()
-    table["0000-0000"] = "Guilherme"
-    table["0000-0001"] = "Rafael"
-    table["0000-0002"] = "Richard"
-    table["0000-0003"] = "Leandro"
-    table["0000-0004"] = "Wagner"
-    table["0000-0005"] = "Abreu"
-    del table["0000-0000"]
-    del table["0000-0001"]
-    del table["0000-0002"]
 
-    # print(table["0000-0000"])
-    # print(table["0000-0001"])
-    # print(table["0000-0002"])
-    print(table["0000-0003"])
-    print(table["0000-0004"])
-    print(table["0000-0005"])
