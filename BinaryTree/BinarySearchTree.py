@@ -56,6 +56,26 @@ class BST:
         return True
 
 
+
+    def print_inorder(self, root):
+        if root is not None:
+            self.print_inorder(root.left)
+            print(str(root.value) + " ->", end=' ')
+            self.print_inorder(root.right)
+
+    def print_preorder(self, root):
+        if root is not None:
+            print(str(root.value) + " ->", end=' ')
+            self.print_preorder(root.left)
+            self.print_preorder(root.right)
+
+    def print_postorder(self, root):
+        if root is not None:
+            self.print_postorder(root.left)
+            self.print_postorder(root.right)
+            print(str(root.value) + " -> ", end=' ')
+    
+
 if __name__ == "__main__":
     tree = BST()
     tree.insert(2)
