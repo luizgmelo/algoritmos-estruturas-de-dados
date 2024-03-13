@@ -25,10 +25,12 @@ class Queue:
         current.next = new_node
 
     def dequeue(self):
-        self.count -= 1
-        tmp = self.head
-        self.head = self.head.next
-        return tmp.data
+        if self.head is not None:
+            self.count -= 1
+            tmp = self.head
+            self.head = self.head.next
+            return tmp.data
 
-queue = Queue()
+if __name__ == "__main__":
+    queue = Queue()
 
