@@ -37,8 +37,32 @@ class BST:
                 return
             return self.__insertNode(value, root.right)
 
-tree = BST()
-tree.insert(2)
-tree.insert(3)
-tree.insert(1)
-print(tree.size())
+    def search(self, value):
+        if self.root is None:
+            return
+
+        return self.__search_node(value, self.root)
+
+    def __search_node(self, value, root):
+        if root.value > value:
+            if root.left is None:
+                return False
+            return self.__search_node(value, root.left)
+        if root.value < value:
+            if root.right is None:
+                return False
+            return self.__search_node(value, root.right)
+        
+        return True
+
+
+if __name__ == "__main__":
+    tree = BST()
+    tree.insert(2)
+    tree.insert(3)
+    tree.insert(1)
+    print(tree.size())
+    print(tree.search(3))
+    print(tree.search(1))
+    print(tree.search(2))
+    print(tree.search(99))
