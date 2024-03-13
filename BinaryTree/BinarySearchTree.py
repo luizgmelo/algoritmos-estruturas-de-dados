@@ -56,6 +56,18 @@ class BST:
         return True
 
 
+    def min_node(self):
+        if self.root is None:
+            return
+
+        return self.__min_node(self.root)
+
+    def __min_node(self, root):
+        if root.left is None:
+            return root.value
+        return self.__min_node(root.left)
+
+
 
     def print_inorder(self, root):
         if root is not None:
