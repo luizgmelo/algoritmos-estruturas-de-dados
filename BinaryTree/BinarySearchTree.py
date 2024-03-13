@@ -64,7 +64,7 @@ class BST:
 
     def __min_node(self, root):
         if root.left is None:
-            return root.value
+            return root
         return self.__min_node(root.left)
 
 
@@ -82,7 +82,7 @@ class BST:
         while (dad_succ is not None and dad_succ.value < root.value):
             dad_succ = dad_succ.parent
 
-        return dad_succ.value
+        return dad_succ
 
     def delete(self, value):
         if self.root is None:
