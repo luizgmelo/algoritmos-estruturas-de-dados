@@ -68,6 +68,22 @@ class BST:
         return self.__min_node(root.left)
 
 
+    def successor(self, root):
+        if root is None:
+            return
+        
+        # case root.right exist succ is the most left node
+        if root.right is not None:
+            succ = self.__min_node(root.right)
+            return succ
+
+        # case root.right don't exist we need look to up in the tree
+        dad_succ = root.parent
+        while (dad_succ is not None and dad_succ.value < root.value):
+            dad_succ = dad_succ.parent
+
+        return dad_succ.value
+
 
     def print_inorder(self, root):
         if root is not None:
